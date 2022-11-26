@@ -1,7 +1,7 @@
 <template>
-  <div justify="center" align="center" class="mt-10">
-    <div>
-      <v-row justify="center" align="center">
+  <div>
+    <div class="mt-10 ml-10" justify="center" align="center">
+      <v-row>
         <v-col cols="4" sm="4">
           <img :src="selectimage()" width="400px" />
 
@@ -55,26 +55,63 @@
               </v-col>
             </v-row>
             <v-row class="ma-8">
-              <v-btn color="primary" outlined large @click="calculated">
+              <v-btn color="primary" outlined large @click="calculated(),checkcal=true">
                 calculate
                 <v-icon dark class="ma-2">
                   {{ mdiChartLine }}
                 </v-icon>
               </v-btn>
             </v-row>
-            <chart :series="series" :chartOptions="chartOptions"></chart>
+      
+              <chart :series="series" :chartOptions="chartOptions"></chart>
+            
+
           </v-card>
         </v-col>
       </v-row>
-      <v-row>
-        <v-col col="12" sm="6">
-          <h2 class="red--text text--lighten-1">{{ product.detail }}</h2>
+    </div>
 
-          <h3 class="font-weight-bold">Supplier: {{ supplier.name }}</h3>
-          <h3>Category: {{ product.category }}</h3>
-          <h3>Price: {{ CurrencyExchange }} $,{{product.price.yuan}} ¥   / unit</h3>
-        </v-col>
-      </v-row>
+    <div class="mt-16 " justify="center" align="center">
+
+      <h2 class="red--text text--lighten-1">{{ product.detail }}</h2>
+      <table style="width:70%" class="pa-10">
+        <tr>
+
+
+        </tr>
+        <tr>
+          <td>
+            Supplier:
+          </td>
+          <td>
+            {{ supplier.name }}
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Category:
+          </td>
+          <td>
+            {{ product.category }}
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Price:
+          </td>
+          <td>
+            {{ CurrencyExchange }} $,{{ product.price.yuan }} ¥ / unit
+          </td>
+        </tr>
+
+
+        <tr v-for="(value, key, index)  in contacts" :key="index">
+
+          <td>{{ key }} :</td>
+          <td>{{ value }}</td>
+
+        </tr>
+      </table>
     </div>
 
   </div>
@@ -96,6 +133,7 @@ export default {
   },
   data() {
     return {
+      checkcal: false,
       series: [],
       mdiTruckCargoContainer: mdiTruckCargoContainer,
       mdiPercentOutline: mdiPercentOutline,
@@ -118,6 +156,7 @@ export default {
       cost: 110,
       price: 10,
       chartOptions: {},
+      contacts: {},
     };
   },
   methods: {
@@ -129,15 +168,20 @@ export default {
       var EndPointY = (m * (startX - EndX) - startY) * -1
       return EndPointY
     },
+    Currency(price){
+      console.log(Number((price) * JSON.parse(localStorage.getItem("Currency")).USD).toFixed(2))
+      return Number((price) * JSON.parse(localStorage.getItem("Currency")).USD).toFixed(2)
+    },
     calculated() {
-      this.price = parseInt(this.CurrencyExchange);
-      console.log("price:",this.price,typeof this.price)
+      var price = parseFloat(this.Currency(parseFloat(this.product.price.yuan)));
+      console.log(typeof price)
+      // console.log("price:", this.price, typeof this.price , parseInt(this.CurrencyExchange))
       var BreakEvenAmount = 0
-      var sellprice = this.price + (this.price * this.profit / 100)
-      BreakEvenAmount = this.cost / (sellprice - this.price)
+      var sellprice = price + (price * this.profit / 100)
+      BreakEvenAmount = this.cost / (sellprice - price)
       var BreakEvenSales = 0
       BreakEvenSales = BreakEvenAmount * sellprice
-      console.log((Number(BreakEvenAmount.toFixed(2)), Number(BreakEvenSales.toFixed(2))))
+      console.log((Number(BreakEvenAmount.toFixed(2))), Number(BreakEvenSales.toFixed(2)))
 
       var Y_last_cost = this.calEndpoint(0, 0, BreakEvenSales, BreakEvenAmount)
       var Y_last_sale = this.calEndpoint(0, this.cost, BreakEvenSales, BreakEvenAmount)
@@ -258,7 +302,22 @@ export default {
             .then(res => {
               // console.log("sup", res)
               this.supplier = res.data
-              console.log(this.supplier)
+              // console.log(this.supplier)
+
+              var contacts = this.supplier.contact
+              Object.keys(contacts).forEach(key => {
+                // console.log(key, contacts[key]);
+                var obj = {}
+                obj[key] = contacts[key]
+                // console.log(obj)
+                this.contacts[key] = contacts[key]
+
+              });
+              // console.log(this.contacts)
+
+         
+
+
             })
 
         })
@@ -345,20 +404,26 @@ export default {
       return this.images.slice(0, 1);
     },
     CurrencyExchange() {
-
-      if (this.product.length != 0) {
+      // console.log('product',this.product)
+      if (this.product) {
         console.log("price", Number(parseInt(this.product.price.yuan) * JSON.parse(localStorage.getItem("Currency")).USD).toFixed(2))
-    
-        return Number(parseInt(this.product.price.yuan) * JSON.parse(localStorage.getItem("Currency")).USD).toFixed(2)
+
+        return Number(parseFloat(this.product.price.yuan) * JSON.parse(localStorage.getItem("Currency")).USD).toFixed(2)
+      
       }
-      return 0
+      return 0;
     }
 
   },
 };
 </script>
 <style>
+td,
+th {
 
+  text-align: left;
+  padding: 8px;
+}
 </style>
 
 

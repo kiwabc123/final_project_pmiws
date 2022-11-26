@@ -69,7 +69,7 @@ export default {
       imageUrl: "",
       alignments: ["start", "center", "end", "ddd", "dada"],
       // products: {},
-      products:[],
+      products: [],
       data: [],
       loading: false,
     };
@@ -96,16 +96,28 @@ export default {
       console.log(this.image.name);
       let formData = new FormData();
       formData.append("image", this.image);
+      console.log(this.image.type.match(/image.*/))
+      if (this.image.type.match(/image.*/) === null) {
+        this.loading = false;
+        return;
+      }
       await axios
         .post("http://localhost:8090/api/product/search", formData, {
           headers: { "Content-Type": "multipart/form-data" },
         })
 
         .then((response) => {
-          // var data = response.data
+
+
+
+
           const data = response.data;
           console.table(data)
           this.products = data
+
+
+
+
 
 
 
@@ -116,12 +128,17 @@ export default {
           //  this.products= products
 
           // console.log(this.products);
-          if (response)
-            this.loading = false;
+          this.loading = false;
+          // console.log(this.loading,this.products)
+
+
         })
         .catch(function (error) {
           console.log(error);
+          this.loading = false;
+
         });
+
     },
     gotodetail(id) {
       console.log("ddd");

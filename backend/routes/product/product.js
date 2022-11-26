@@ -22,9 +22,9 @@ router.post(
     try {
       req.validate();
       // console.info(req.body)
-      obj=JSON.parse(JSON.stringify(req.body))
+      obj = JSON.parse(JSON.stringify(req.body))
       console.info(obj.price)
-     
+
       images = obj.image
       images_id = []
       id_sup = null
@@ -98,14 +98,20 @@ router.post("/searchproduct", [], async (req, res) => {
 
   router.post("/search", [], async (req, res) => {
     try {
-      const { image } = req.files;
       // console.log(req.files)
+      const { image } = req.files;
+
       if (!image) return res.sendStatus(400), console.log(1)
-      if (!/^image/.test(image.mimetype)) return res.sendStatus(400), console.log(2);
+      // console.log(image.mimetype)
+
+      if (!['image/jpeg', 'image/png' ,'image/jpg'].includes(image.mimetype) && !image) return res.statue(400), console.log(2)
+
+      // if (!/^image/.test(image.mimetype)) return res.sendStatus(400), console.log(3);
       getid = await service.search(image)
 
       getproduct = await service.findproduct(getid)
       res.json(getproduct)
+      // res.json("image")
     } catch (err) {
       res.error(err)
     }
@@ -125,7 +131,7 @@ router.get("/", [], async (req, res) => {
 
 router.get("/byID", [], async (req, res) => {
   try {
-    console.log("param",req.query.id)
+    console.log("param", req.query.id)
     const items = await service.findOne(req.query.id);
     res.json(items);
   } catch (err) {
