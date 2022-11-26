@@ -54,6 +54,12 @@ import VueApexCharts from 'vue-apexcharts'
 
 // Vue.component('apexchart', VueApexCharts)
 
+// import VCalendar from 'v-calendar';
+
+
+
+// main.js
+
 new Vue({
   router,
   // store,

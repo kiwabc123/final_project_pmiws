@@ -5,7 +5,7 @@
       color="#F49D1A"
       dark
     >
-      <div class="d-flex align-center">
+      <div class="d-flex align-center"  @click="gotohome()">
         <v-img
           alt="Vuetify Logo"
           class="shrink mr-2"
@@ -33,3 +33,18 @@
     </v-app-bar>
    
 </template>
+<script>
+export default {
+
+methods:{
+  gotohome(item) {
+    console.log(item)
+    //   let routeData = this.$router.resolve({
+    //     path: "/home",
+    this.$router.push({ name: 'app' })
+    //   });
+    //   window.open(routeData.href, "_self");
+    },
+}
+}
+</script>

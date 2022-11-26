@@ -37,7 +37,7 @@ import Router from 'vue-router'
 import app from '../views/App.vue'
 import detail from '../views/Detail.vue'
 import home from '../views/Home.vue'
-import test from '../views/Test.vue'
+import report from '../views/report.vue'
 
 Vue.use(Router)
 const router = new Router({
@@ -60,9 +60,9 @@ const router = new Router({
       component: home,
     },
     {
-      path: '/test',
-      name: 'test',
-      component: test,
+      path: '/report',
+      name: 'report',
+      component: report,
     }
 
   ]

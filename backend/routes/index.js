@@ -7,11 +7,13 @@ const groups = require('./groups/group')
 const image = require('./image/image')
 const product = require('./product/product')
 const supplier =require('./supplier/supplier')
+
+// const reported = require('./reported/reported')
 router.use('/admin', admin)
 router.use('/students', student)
 router.use('/groups', groups)
 router.use('/image',image)
 router.use('/product',product)
 router.use('/supplier',supplier)
-
+// router.use('/reported',reported)
 module.exports = router;

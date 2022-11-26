@@ -30,7 +30,7 @@ module.exports = {
     onInsert(value, images, supplier) {
         return new Promise((resolve, reject) => {
             // insert images
-          
+
             // console.log(images)
             const newManage = new modelProduct({
 
@@ -98,16 +98,17 @@ module.exports = {
                     dataToSend = dataToSend.replace(/[\u0000-\u0019]+/g, "");
                     // replace single quotes with double quotes 
                     dataToSend = dataToSend.replace(/'/g, '"');
-                   
-                        if(dataToSend.indexOf("/")!==1){
-                        obj = JSON.parse(dataToSend);
-                        console.log("data",obj.length ,obj)
-                        }
-                   
-              
-            });
 
-              
+                    if(dataToSend[0] == "[" && dataToSend.slice(-1) == "]"){
+                        obj = JSON.parse(dataToSend);
+                        console.log("data", obj.length, obj)
+                        
+                    }
+
+
+                });
+
+
                 python.on('exit', (code) => {
                     console.log(`child process exited with code ${code}`, obj);
                     resolve(obj)
@@ -116,7 +117,7 @@ module.exports = {
 
             }
             catch (err) {
-                 reject(err)
+                reject(err)
             }
         })
     },

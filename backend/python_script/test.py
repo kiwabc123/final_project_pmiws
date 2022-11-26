@@ -15,7 +15,7 @@ def welcome(text):
 
 if sys.argv[1] == 'hi':
     hi(sys.argv[2])
-elif sys.argv[2] == 'hello':
+elif sys.argv[1] == 'hello':
     hello(sys.argv[2])
 elif sys.argv[1] == 'welcome':
     welcome(sys.argv[2])

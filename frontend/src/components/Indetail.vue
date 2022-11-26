@@ -72,7 +72,7 @@
 
           <h3 class="font-weight-bold">Supplier: {{ supplier.name }}</h3>
           <h3>Category: {{ product.category }}</h3>
-          <h3>Price: {{ CurrencyExchange }},{{product.price.yuan}}</h3>
+          <h3>Price: {{ CurrencyExchange }} $,{{product.price.yuan}} ¥   / unit</h3>
         </v-col>
       </v-row>
     </div>
