@@ -4,6 +4,7 @@
       app
       color="#F49D1A"
       dark
+      hide-on-scroll
     >
       <div class="d-flex align-center"  @click="gotohome()">
         <v-img
