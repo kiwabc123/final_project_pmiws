@@ -62,8 +62,10 @@
                 </v-icon>
               </v-btn>
             </v-row>
-      
+            <div v-if="checkcal">
               <chart :series="series" :chartOptions="chartOptions"></chart>
+            </div>
+              
             
 
           </v-card>

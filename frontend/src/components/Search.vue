@@ -149,11 +149,24 @@ export default {
       window.open(routeData.href, "_blank");
     },
   },
-  // created() {
-  //   // Simple GET request using axios
-  //   axios
-  //     .get("http://127.0.0.1:5000/")
-  //     .then((response) => console.log(response));
-  // },
+  created() {
+    // Simple GET request using axios
+    axios
+      .get("http://localhost:8090/api/product/getrandom")
+      .then((response) => {
+        const data = response.data;
+        console.table(data)
+        this.products = data
+      })
+      .catch(function (error) {
+        console.log(error);
+        this.loading = false;
+
+      });
+
+
+
+
+  },
 };
 </script>
