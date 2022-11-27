@@ -68,6 +68,16 @@ router.post(
     }
   }
 );
+router.get("/getrandom",[],async (req,res)=>{
+  try {
+    const items = await service.random();
+    console.log(items.length)
+
+    res.json(items);
+  } catch (err) {
+    res.error(err);
+  }
+})
 router.post("/searchproduct", [], async (req, res) => {
   try {
     req.validate();

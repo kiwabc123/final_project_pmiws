@@ -67,6 +67,17 @@ module.exports = {
     //         }).catch(err => reject(err))
     //     })
     // },
+    random() {
+        return new Promise((resolve, reject) => {
+            modelProduct.aggregate(
+                [{ $sample: { size: 10 } }]
+            ).then(result => {
+                resolve(result)
+            }).catch(err => reject(err))
+
+
+        })
+    },
     search(value) {
         return new Promise((resolve, reject) => {
 
@@ -78,15 +89,26 @@ module.exports = {
 
                 var dataToSend;
                 var obj;
-
+                var session = []
                 const python = spawn('python', ['../backend/python_script/imagesearch.py', value.name])
                 python.stdout.on('data', function (data) {
 
                     dataToSend = data.toString()
-                    console.log(dataToSend)
+
+                    session.push(dataToSend)
+                    // console.log(session[session.length - 1])
+
+
                     // console.log(typeof ataToSend)
                     // Preserve newlines, etc. - use valid JSON
-                    dataToSend = dataToSend.replace(/\\n/g, "\\n")
+
+
+                });
+
+
+                python.on('exit', (code) => {
+
+                    var data = session[session.length - 1].replace(/\\n/g, "\\n")
                         .replace(/\\'/g, "\\'")
                         .replace(/\\"/g, '\\"')
                         .replace(/\\&/g, "\\&")
@@ -95,21 +117,18 @@ module.exports = {
                         .replace(/\\b/g, "\\b")
                         .replace(/\\f/g, "\\f");
                     // Remove non-printable and other non-valid JSON characters
-                    dataToSend = dataToSend.replace(/[\u0000-\u0019]+/g, "");
+                    data = data.replace(/[\u0000-\u0019]+/g, "");
                     // replace single quotes with double quotes 
-                    dataToSend = dataToSend.replace(/'/g, '"');
+                    data = data.replace(/'/g, '"');
+                    console.log(typeof data)
+                    // if (dataToSend[0] == "[" && dataToSend.slice(-1) == "]") {
+                    //     obj = JSON.parse(dataToSend);
+                    //     console.log("data", obj.length, obj)
 
-                    if(dataToSend[0] == "[" && dataToSend.slice(-1) == "]"){
-                        obj = JSON.parse(dataToSend);
-                        console.log("data", obj.length, obj)
-                        
-                    }
+                    // }
+                    obj = JSON.parse(data);
+                    console.log("data", obj.length, obj)
 
-
-                });
-
-
-                python.on('exit', (code) => {
                     console.log(`child process exited with code ${code}`, obj);
                     resolve(obj)
                 });
