@@ -192,7 +192,7 @@
       </section>
 
       <section>
-        <v-parallax height="430">
+        <v-parallax height="600">
         <v-layout
           column
           wrap
@@ -206,7 +206,7 @@
               <v-layout row wrap align-center>
                 <v-flex xs12 md4>
                   <v-card class="elevation-0 transparent">
-                    <v-card-text  class=" layout justify-center">
+                    <v-card-text  class="text-xs-center">
                       <!-- <v-icon x-large class="blue--text text--lighten-2 ">mdi-earth</v-icon> -->
                     </v-card-text>
                     <v-row justify="center">
@@ -219,10 +219,10 @@
                     </v-row>
                     <v-card-title primary-title class="layout justify-center">
                       
-                      <div class="headline text-xs-center">Jittakorn Pankam</div>
+                      <div class="headline"><br/>Jittakorn Pankam</div>
                     </v-card-title>
                     <v-card-text>
-                      Studying in Mae Fah Luang University. Faculty of Information and Technology. Major Software Engineering
+                      Studying in Mae Fah Luang University. Faculty of Information and Technology. Major Software Engineering.
                     </v-card-text>
                   </v-card>
                 </v-flex>
@@ -240,7 +240,7 @@
     </v-avatar>
                     </v-row>
                     <v-card-title primary-title class="layout justify-center">
-                      <div class="headline">Keerati Nitmanee</div>
+                      <div class="headline"><br/>Keerati Nitmanee</div>
                     </v-card-title>
                     <v-card-text>
                       Studying in Mae Fah Luang University. Faculty of Information and Technology. Major Software Engineering. 
@@ -261,22 +261,83 @@
     </v-avatar>
                     </v-row>
                     <v-card-title primary-title class="layout justify-center">
-                      <div class="headline text-xs-center">Tiradet Janta</div>
+                      <div class="headline text-xs-center"><br/>Tiradet Janta</div>
                     </v-card-title>
                     <v-card-text>
                       Studying in Mae Fah Luang University. Faculty of Information and Technology. Major Software Engineering. 
                     </v-card-text>
                   </v-card>
+                  
                 </v-flex>
+                
               </v-layout>
             </v-container>
           </v-flex>
         </v-layout>
+      <v-footer dark padless>
+    <v-col
+      class="text-center"
+      cols="12"
+    >
+      <strong><h2>Contact</h2></strong>
+      6231305025@lamduan.mfu.ac.th
+<br/>6231305032@lamduan.mfu.ac.th
+<br/>6231305034@lamduan.mfu.ac.th
+                <br/>
+                <br/><v-btn
+
+          :key="icon"
+
+          icon
+        >
+<v-icon x-large class="orange--text text--lighten-2 mx-5 white--text">mdi-facebook</v-icon>
+<v-icon x-large class="orange--text text--lighten-2 mx-5 white--text">mdi-twitter</v-icon>
+<v-icon x-large class="orange--text text--lighten-2 mx-5 white--text">mdi-instagram</v-icon>
+        </v-btn>
+    </v-col>
+
+  </v-footer>
         </v-parallax>
       </section>
 
       <section>
-            <v-parallax :src="imageLink.logo" height="130">
+          <!-- <v-footer
+    dark
+    padless
+  >
+    <v-card
+      flat
+      tile
+      class="indigo lighten-1 white--text text-center"
+    >
+      <v-card-text>
+
+      </v-card-text>
+
+      <v-card-text class="white--text pt-0">
+<br/>6231305025
+<br/>6231305032
+<br/>6231305034
+      </v-card-text>
+
+      <v-divider></v-divider>
+
+      <v-card-text class="white--text">
+                <v-btn
+
+          :key="icon"
+
+          icon
+        >
+<v-icon x-large class="blue--text text--lighten-2 mx-5 white--text">mdi-facebook</v-icon>
+<v-icon x-large class="blue--text text--lighten-2 mx-5 white--text">mdi-twitter</v-icon>
+<v-icon x-large class="blue--text text--lighten-2 mx-5 white--text">mdi-instagram</v-icon>
+        </v-btn>
+      </v-card-text>
+    </v-card>
+  </v-footer> -->
+            <!-- <v-parallax :src="imageLink.logo" height="130">
+              
         <v-container grid-list-xl>
           <v-layout row wrap justify-center class="my-5">
 
@@ -294,7 +355,7 @@
             </v-flex>
           </v-layout>
         </v-container>
-                </v-parallax>
+                </v-parallax> -->
       </section>
 
     
@@ -309,6 +370,14 @@
 <script>
 import Appbar from '@/components/Appbar'
 export default {
+      data: () => ({
+      icons: [
+        'mdi-facebook',
+        'mdi-twitter',
+        'mdi-linkedin',
+        'mdi-instagram',
+      ],
+    }),
   components: {
 
     Appbar
