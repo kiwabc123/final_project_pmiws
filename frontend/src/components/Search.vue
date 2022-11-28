@@ -9,9 +9,8 @@
           <div class="form-group">
             <label for="my-file">Select Image</label>
             <v-file-input v-model="image" outlined dense label="File input" accept="image/*" @change="onFileChange" />
-
             <div class="border p-2 mt-3">
-              <p>Preview Here:</p>
+              <strong>Preview Here:</strong><br/>
               <template v-if="imageUrl">
                 <img :src="imageUrl" class="img-fluid" height="300px" />
                 <p class="mb-0">file name: {{ image.name }}</p>
@@ -23,20 +22,21 @@
       </div>
     </div>
     <div>
-      <v-container class="grey lighten-5">
+      <v-container class="grey lighten-3">
         <v-flex d-flex>
           <v-layout wrap>
+            
             <v-flex md4 v-for="(item, idx) in products.slice().reverse()" :key="idx">
-              <v-card flat class="ma-3 text-xs-center" @click="gotodetail(item._id)">
+              <v-card flat style="overflow-y: auto; height:630px" class="ma-3 text-xs-center" @click="gotodetail(item._id)">
                 <v-img :src="`http://localhost:8090/api/image/dataset/${item.images[0]}.jpeg`" aspect- ratio="2.75">
                 </v-img>
                 <v-card-title primary-title class="justify-center">
                   <div>
-                    <h3 class="headline pink--text text--accent-2">
-                      {{ item.detail }}
+                    <h3 class="headline black--text text--accent-2">
+                      {{ item.detail }} 
                     </h3>
-                    <div>
-                      {{ item.price['yuan'] }}
+                    <div style="height:10%; position:absolute; bottom:0px;" class="red--text">
+                      {{ item.price['yuan'] }} <strong>¥</strong>
                     </div>
                   </div>
                 </v-card-title>
@@ -49,12 +49,13 @@
     <v-dialog class="text-center" v-model="loading" transition="dialog-bottom-transition" persistent width="300">
       <v-card color="deep-purple accent-3" dark>
         <v-card-text>
-          I am searching
+          Please Wait
           <v-progress-linear indeterminate color="white" class="mb-0"></v-progress-linear>
         </v-card-text>
       </v-card>
     </v-dialog>
   </v-container>
+
 </template>
 
 <script>

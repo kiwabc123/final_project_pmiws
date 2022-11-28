@@ -274,7 +274,7 @@
             </v-container>
           </v-flex>
         </v-layout>
-      <v-footer dark padless>
+      <v-footer dark >
     <v-col
       class="text-center"
       cols="12"
