@@ -33,11 +33,12 @@ export default {
           xaxis: {
             type: 'numeric'
           },
+          
         }
       },
     },
 
-    points: Array
+    
 
   },
   data: function () {

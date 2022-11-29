@@ -55,7 +55,8 @@
     },
     "rules": {
       "no-unused-vars": "off",
-      "no-mixed-spaces-an1d-tabs": 0
+      "no-mixed-spaces-an1d-tabs": 0,
+      "no-extra-semi": "off"
     }
   },
   "browserslist": [

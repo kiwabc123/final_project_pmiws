@@ -53,12 +53,12 @@
     <div>
 
 
-      <v-container class="grey lighten-3">
+      <v-container class="gradient lighten-3">
         <v-flex d-flex>
           <v-layout wrap>
 
             <v-flex md4 v-for="(item, idx) in products.slice().reverse()" :key="idx">
-              <v-card flat style="overflow-y: auto; height:630px" class="ma-3 text-xs-center"
+              <v-card flat style="overflow-y: auto; height:630px" class="ma-3 text-xs-center rounded-xl"
                 @click="gotodetail(item._id)">
                 <v-img :src="`http://localhost:8090/api/image/dataset/${item.images[0]}.jpeg`" aspect- ratio="2.75">
                 </v-img>
@@ -67,8 +67,8 @@
                     <h3 class="headline black--text text--accent-2">
                       {{ item.detail }}
                     </h3>
-                    <div style="height:10%; position:absolute; bottom:0px;" class="red--text">
-                      {{ item.price['yuan'] }} <strong>¥</strong>
+                    <div style="height:10%; position:absolute; bottom:0px;" class="red--text text-h4">
+                      {{ Currency(item.price['yuan']) }} <strong>$</strong>
                     </div>
                   </div>
                 </v-card-title>
@@ -78,12 +78,28 @@
         </v-flex>
       </v-container>
     </div>
-    <v-dialog class="text-center" v-model="loading" transition="dialog-bottom-transition" persistent width="300">
-      <v-card color="deep-purple accent-3" dark>
-        <v-card-text>
+    <v-dialog class="text-center" v-model="loading" transition="dialog-bottom-transition" persistent width="50%">
+      <v-card color="#FFE15D">
+        <!-- <v-card-text>
           I am searching
           <v-progress-linear indeterminate color="white" class="mb-0"></v-progress-linear>
+
         </v-card-text>
+        <div class="text-center align-center">
+        
+        </div> -->
+
+        <v-container style="height: 400px;">
+          <v-row class="fill-height" align-content="center" justify="center">
+            <v-col class="text-h5 text-center" cols="12">
+              <div class="orangetext2"> Getting your files</div>
+
+            </v-col>
+
+            <v-progress-circular justify-center :width="15" :size="150" color="red" indeterminate></v-progress-circular>
+
+          </v-row>
+        </v-container>
       </v-card>
     </v-dialog>
   </v-container>
@@ -91,6 +107,7 @@
 
 <script>
 // import a from '../../../backend/dataset'
+
 import axios from "axios";
 export default {
   name: "HelloWorld",
@@ -229,7 +246,11 @@ export default {
 
         });
 
-    }
+    },
+    Currency(price) {
+      console.log(Number((price) * JSON.parse(localStorage.getItem("Currency")).USD).toFixed(2))
+      return Number((price) * JSON.parse(localStorage.getItem("Currency")).USD).toFixed(2)
+    },
   },
   created() {
 
@@ -314,5 +335,14 @@ export default {
 
 .removeFile {
   width: 200px;
+}
+
+.orangetext2 {
+  color: #DC3535;
+}
+
+.gradient {
+  background: rgb(179, 51, 79);
+  background: linear-gradient(90deg, rgba(179, 51, 79, 1) 0%, rgba(210, 51, 59, 0.9245448179271709) 26%, rgba(253, 51, 29, 0.6920518207282913) 62%, rgba(252, 176, 69, 1) 100%);
 }
 </style>

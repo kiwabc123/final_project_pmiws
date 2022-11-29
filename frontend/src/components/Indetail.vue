@@ -62,7 +62,7 @@
                 </v-icon>
               </v-btn>
             </v-row>
-            <div v-if="checkcal">
+            <div v-if="checkcal" class="chart">
               <chart :series="series" :chartOptions="chartOptions"></chart>
             </div>
 
@@ -102,7 +102,7 @@
             Price:
           </td>
           <td>
-            {{ CurrencyExchange }} $  ,  {{ product.price.yuan }} ¥ / unit
+            {{ CurrencyExchange }} $ , {{ product.price.yuan }} ¥ / unit
           </td>
         </tr>
 
@@ -153,6 +153,7 @@ import chart from "./chart.vue"
 import { mdiTruckCargoContainer } from '@mdi/js';
 import { mdiPercentOutline } from '@mdi/js';
 import { mdiChartLine } from '@mdi/js';
+import { format } from "path";
 // import VueGallerySlideshow from "vue-gallery-slideshow";
 export default {
   name: "HelloWorld",
@@ -218,10 +219,12 @@ export default {
       var Y_last_cost = this.calEndpoint(0, 0, BreakEvenSales, BreakEvenAmount)
       var Y_last_sale = this.calEndpoint(0, this.cost, BreakEvenSales, BreakEvenAmount)
       console.log(Number(Y_last_cost).toFixed(2))
+
       this.series = [
         {
           name: "Total cost",
           color: '#0066FF',
+
           // data: [2, 6, 10]
           data: [{
             x: 0,
@@ -258,21 +261,73 @@ export default {
 
 
       this.chartOptions = {
+        title: {
+          text: 'Break-Even Point'
+        },
         chart: {
-          height: 350,
+          height: 450,
           type: "line",
-          stacked: false
+          stacked: false,
+          dropShadow: {
+            enabled: true,
+            color: '#000',
+            top: 18,
+            left: 7,
+            blur: 10,
+            opacity: 0.2
+          },
         },
         dataLabels: {
           enabled: false
         },
         xaxis: {
-          type: 'numeric'
+          type: 'numeric',
+          title: {
+            text: 'Unit sold'
+          },
+        },
+        yaxis: {
+          title: {
+            text: 'Sales'
+          },
+
+        },
+        fill: {
+          type: "gradient",
+          gradient: {
+            shadeIntensity: 0.8,
+            opacityFrom: 0.8,
+            opacityTo: 0.9,
+            stops: [0, 90, 100]
+          }
         },
 
 
-        annotations: {
 
+        annotations: {
+          yaxis: [
+            {
+              y: 0,
+              y2: this.cost,
+              borderColor: '#000000',
+              fillColor: '#FFBF00',
+              label: {
+                text: 'fixed costs'
+              },
+              opacity: 0.2,
+            },
+            {
+              y: this.cost,
+              y2: Number(Y_last_sale).toFixed(2),
+              borderColor: '#000000',
+              fillColor: '#00FF00',
+              label: {
+                text: 'variable costs'
+              },
+              opacity: 0.2,
+            }
+          ]
+          ,
           points: [{
             x: Number(BreakEvenAmount).toFixed(2),
             y: Number(BreakEvenSales).toFixed(2),
@@ -413,7 +468,7 @@ export default {
           })
           .catch((error) => console.error("FETCH ERROR:", error));
       }
-    }, 
+    },
     selectimage() {
 
       var url = 'http://localhost:8090/api/image/dataset/'
@@ -432,7 +487,7 @@ export default {
     async getrandom() {
       // console.log(this.product)
       await axios
-        .get("http://localhost:8090/api/product/getrandomcate/?category="+this.product.category)
+        .get("http://localhost:8090/api/product/getrandomcate/?category=" + this.product.category)
         .then((response) => {
           const data = response.data;
           console.table(data)
@@ -448,12 +503,12 @@ export default {
 
   },
   created() {
-    
+
     this.getproduct(this.$route.query.productid);
     // console.log(this.$route.query.productid);
     // this.getsuppiler(this.product)
     this.fetchCurrencies();
-    
+
 
   },
   computed: {
@@ -490,15 +545,26 @@ th {
 .orangetext2 {
   color: #DC3535;
 }
+
 img {
-   
-      border:2px solid #fff;
-      
-      box-shadow: 10px 10px 5px #ccc;
-      -moz-box-shadow: 10px 10px 5px #ccc;
-      -webkit-box-shadow: 10px 10px 5px #ccc;
-      -khtml-box-shadow: 10px 10px 5px #ccc;
-    }
+
+  border: 2px solid #fff;
+
+  box-shadow: 10px 10px 5px #ccc;
+  -moz-box-shadow: 10px 10px 5px #ccc;
+  -webkit-box-shadow: 10px 10px 5px #ccc;
+  -khtml-box-shadow: 10px 10px 5px #ccc;
+}
+
+.chart:hover {
+  transform: scale(1.3);
+  background: #FFFFFF;
+  z-index: 2;
+  box-shadow: 2px 2px 2px #000;
+  border-radius: 30px;
+}
+
+
 </style>
 
 
