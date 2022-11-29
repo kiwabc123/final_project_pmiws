@@ -46,10 +46,10 @@
               </v-col>
               <v-col cols=3>
                 <v-row class="d-flex align-center justify-center mt-2 ml-4">
-                  <p><strong>Unit cost</strong></p>
+                  <p class="orangetext"><strong>Unit cost</strong></p>
 
                 </v-row>
-                <v-row class="d-flex align-center justify-center mt-2 ml-4">
+                <v-row class="d-flex align-center justify-center mt-2 ml-4 red--text">
                   <p>{{ CurrencyExchange }} <strong>USD</strong></p>
                 </v-row>
               </v-col>
@@ -73,9 +73,9 @@
       </v-row>
     </div>
     <v-divider></v-divider>
-    <div class="mt-16 orangetext2" justify="center" align="center">
+    <div class="mt-16 " justify="center" align="center">
 
-      <h2 class="text--lighten-1">{{ product.detail }}</h2>
+      <h2 class="orangetext2 text--lighten-1">{{ product.detail }}</h2>
       <table style="width:70%" class="pa-10">
         <tr>
 
