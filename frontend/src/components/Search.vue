@@ -4,39 +4,71 @@
       <div class="col-12 text-center">
         <h1 class="mb-3">Product Image Matching With Supplier</h1>
       </div>
-      <div class="col-md-5 offset-md-1">
-        <form>
-          <div class="form-group">
+      <!-- <div class="col-6 text-center" style="justify-content: center">
+
+        <div class="">
+          <div class="">
             <label for="my-file">Select Image</label>
             <v-file-input v-model="image" outlined dense label="File input" accept="image/*" @change="onFileChange" />
-
-            <div class="border p-2 mt-3">
-              <p>Preview Here:</p>
-              <template v-if="imageUrl">
-                <img :src="imageUrl" class="img-fluid" height="300px" />
-                <p class="mb-0">file name: {{ image.name }}</p>
-                <p class="mb-0">size: {{ image.size / 1024 }}KB</p>
-              </template>
-            </div>
           </div>
-        </form>
+          <div class="border p-2 mt-3">
+            <p>Preview Here:</p>
+            <template v-if="imageUrl">
+              <img :src="imageUrl" class="img-fluid" height="300px" />
+              <p class="mb-0">file name: {{ image.name }}</p>
+              <p class="mb-0">size: {{ image.size / 1024 }}KB</p>
+            </template>
+          </div>
+        </div> 
+
+      </div> -->
+
+    </div>
+
+
+
+    <div v-if="!file">
+      <div :class="['dropZone', dragging ? 'dropZone-over' : '']" @dragenter="dragging = true"
+        @dragleave="dragging = false">
+        <div class="dropZone-info" @drag="onChange">
+          <span class="fa fa-cloud-upload dropZone-title"></span>
+          <span class="dropZone-title">Drop file or click to upload</span>
+          <div class="dropZone-upload-limit-info">
+            <div>extension support: image</div>
+            <div>maximum file size: 5 MB</div>
+          </div>
+        </div>
+        <input type="file" @change="onChange">
       </div>
     </div>
+    <div v-else class="dropZone-uploaded">
+      <div class="dropZone-uploaded-info">
+        <span class="dropZone-title">Uploaded</span>
+        <button type="button" class="btn btn-primary removeFile" @click="removeFile(), getrandom()">Remove File</button>
+      </div>
+    </div>
+
+
+
     <div>
-      <v-container class="grey lighten-5">
+
+
+      <v-container class="grey lighten-3">
         <v-flex d-flex>
           <v-layout wrap>
+
             <v-flex md4 v-for="(item, idx) in products.slice().reverse()" :key="idx">
-              <v-card flat class="ma-3 text-xs-center" @click="gotodetail(item._id)">
+              <v-card flat style="overflow-y: auto; height:630px" class="ma-3 text-xs-center"
+                @click="gotodetail(item._id)">
                 <v-img :src="`http://localhost:8090/api/image/dataset/${item.images[0]}.jpeg`" aspect- ratio="2.75">
                 </v-img>
                 <v-card-title primary-title class="justify-center">
                   <div>
-                    <h3 class="headline pink--text text--accent-2">
+                    <h3 class="headline black--text text--accent-2">
                       {{ item.detail }}
                     </h3>
-                    <div>
-                      {{ item.price['yuan'] }}
+                    <div style="height:10%; position:absolute; bottom:0px;" class="red--text">
+                      {{ item.price['yuan'] }} <strong>¥</strong>
                     </div>
                   </div>
                 </v-card-title>
@@ -72,10 +104,48 @@ export default {
       products: [],
       data: [],
       loading: false,
+      file: '',
+      dragging: false,
+
     };
   },
 
   methods: {
+    onChange(e) {
+      var files = e.target.files || e.dataTransfer.files;
+
+      if (!files.length) {
+        this.dragging = false;
+        return;
+      }
+
+      this.createFile(files[0]);
+    },
+    createFile(file) {
+      if (!file.type.match('image.*')) {
+        alert('please select image file');
+        this.dragging = false;
+
+        return;
+
+      }
+
+      if (file.size > 5000000) {
+        alert('please check file size no over 5 MB.')
+        this.dragging = false;
+        return;
+      }
+
+      this.file = file;
+      // console.log(this.file);
+      this.createImage(file)
+      this.searchImage()
+      this.dragging = false;
+    },
+    removeFile() {
+      this.file = '';
+      this.imageUrl = '';
+    },
     createImage(file) {
       const reader = new FileReader();
 
@@ -93,11 +163,11 @@ export default {
     },
     async searchImage() {
       this.loading = true;
-      console.log(this.image.name);
+      console.log(this.file);
       let formData = new FormData();
-      formData.append("image", this.image);
-      console.log(this.image.type.match(/image.*/))
-      if (this.image.type.match(/image.*/) === null) {
+      formData.append("image", this.file);
+      console.log(this.file.type.match(/image.*/))
+      if (this.file.type.match(/image.*/) === null) {
         this.loading = false;
         return;
       }
@@ -107,9 +177,6 @@ export default {
         })
 
         .then((response) => {
-
-
-
 
           const data = response.data;
           console.table(data)
@@ -148,21 +215,25 @@ export default {
       });
       window.open(routeData.href, "_blank");
     },
+    getrandom() {
+      axios
+        .get("http://localhost:8090/api/product/getrandom")
+        .then((response) => {
+          const data = response.data;
+          console.table(data)
+          this.products = data
+        })
+        .catch(function (error) {
+          console.log(error);
+          this.loading = false;
+
+        });
+
+    }
   },
   created() {
-    // Simple GET request using axios
-    axios
-      .get("http://localhost:8090/api/product/getrandom")
-      .then((response) => {
-        const data = response.data;
-        console.table(data)
-        this.products = data
-      })
-      .catch(function (error) {
-        console.log(error);
-        this.loading = false;
 
-      });
+    this.getrandom()
 
 
 
@@ -170,3 +241,78 @@ export default {
   },
 };
 </script>
+<style>
+.dropZone {
+  width: 80%;
+  height: 200px;
+  margin: auto;
+  border: 2px dashed #eee;
+}
+
+.dropZone:hover {
+  border: 2px solid #2e94c4;
+}
+
+.dropZone:hover .dropZone-title {
+  color: #1975A0;
+}
+
+.dropZone-info {
+  color: #A8A8A8;
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  transform: translate(0, -50%);
+  text-align: center;
+}
+
+.dropZone-title {
+  color: #787878;
+}
+
+.dropZone input {
+  position: absolute;
+  cursor: pointer;
+  top: 0px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+}
+
+.dropZone-upload-limit-info {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+}
+
+.dropZone-over {
+  background: #5C5C5C;
+  opacity: 0.8;
+}
+
+.dropZone-uploaded {
+  width: 80%;
+  height: 200px;
+  margin: auto;
+  border: 2px dashed #eee;
+}
+
+.dropZone-uploaded-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #A8A8A8;
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  transform: translate(0, -50%);
+  text-align: center;
+}
+
+.removeFile {
+  width: 200px;
+}
+</style>

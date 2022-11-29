@@ -2,7 +2,7 @@
  
         <v-app-bar
       app
-      color="#F49D1A"
+      class="bg"
       dark
       hide-on-scroll
     >
@@ -49,3 +49,8 @@ methods:{
 }
 }
 </script>
+<style>
+.bg {
+  background: linear-gradient(#FFE15D, #DC3535)
+}
+</style>

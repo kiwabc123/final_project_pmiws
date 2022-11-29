@@ -38,7 +38,7 @@ import app from '../views/App.vue'
 import detail from '../views/Detail.vue'
 import home from '../views/Home.vue'
 import report from '../views/report.vue'
-
+import test from '../views/test.vue'
 Vue.use(Router)
 const router = new Router({
   mode: 'history',
@@ -63,6 +63,11 @@ const router = new Router({
       path: '/report',
       name: 'report',
       component: report,
+    },
+    {
+      path: '/test',
+      name: 'test',
+      component: test,
     }
 
   ]

@@ -184,8 +184,10 @@
         </v-parallax>
       </section>
 
+
+
       <section>
-        <v-parallax  height="430">
+        <v-parallax height="600">
           <v-layout column wrap class="my-5" align-center height="430">
 
             <v-flex xs12>
@@ -193,7 +195,7 @@
                 <v-layout row wrap align-center>
                   <v-flex xs12 md4>
                     <v-card class="elevation-0 transparent">
-                      <v-card-text class=" layout justify-center">
+                      <v-card-text class="text-xs-center">
                         <!-- <v-icon x-large class="blue--text text--lighten-2 ">mdi-earth</v-icon> -->
                       </v-card-text>
                       <v-row justify="center">
@@ -203,11 +205,11 @@
                       </v-row>
                       <v-card-title primary-title class="layout justify-center">
 
-                        <div class="headline text-xs-center">Jittakorn Pankam</div>
+                        <div class="headline"><br />Jittakorn Pankam</div>
                       </v-card-title>
                       <v-card-text>
                         Studying in Mae Fah Luang University. Faculty of Information and Technology. Major Software
-                        Engineering
+                        Engineering.
                       </v-card-text>
                     </v-card>
                   </v-flex>
@@ -222,7 +224,7 @@
                         </v-avatar>
                       </v-row>
                       <v-card-title primary-title class="layout justify-center">
-                        <div class="headline">Keerati Nitmanee</div>
+                        <div class="headline"><br />Keerati Nitmanee</div>
                       </v-card-title>
                       <v-card-text>
                         Studying in Mae Fah Luang University. Faculty of Information and Technology. Major Software
@@ -241,212 +243,45 @@
                         </v-avatar>
                       </v-row>
                       <v-card-title primary-title class="layout justify-center">
-                        <div class="headline text-xs-center">Tiradet Janta</div>
+                        <div class="headline text-xs-center"><br />Tiradet Janta</div>
                       </v-card-title>
                       <v-card-text>
                         Studying in Mae Fah Luang University. Faculty of Information and Technology. Major Software
                         Engineering.
                       </v-card-text>
                     </v-card>
+
                   </v-flex>
+
                 </v-layout>
               </v-container>
             </v-flex>
           </v-layout>
-        </v-parallax>
-      </section>
+          <v-footer dark padless class="footer">
+            <v-col class="text-center" cols="12">
+              <strong>
+                <h2>Contact</h2>
+              </strong>
+              6231305025@lamduan.mfu.ac.th
+              <br />6231305032@lamduan.mfu.ac.th
+              <br />6231305034@lamduan.mfu.ac.th
+              <br />
+              <br />
+              <v-btn :key="icon" icon>
+                <v-icon x-large class="orange--text text--lighten-2 mx-5 white--text">mdi-facebook</v-icon>
+                <v-icon x-large class="orange--text text--lighten-2 mx-5 white--text">mdi-twitter</v-icon>
+                <v-icon x-large class="orange--text text--lighten-2 mx-5 white--text">mdi-instagram</v-icon>
+              </v-btn>
+            </v-col>
 
-      <section>
-<<<<<<< HEAD
-        <v-parallax :src="imageLink.logo" height="130">
-          <v-container grid-list-xl>
-            <v-layout row wrap justify-center class="my-5">
-
-              <v-flex xs12 sm4 offset-sm1>
-                <v-card class="elevation-0 transparent">
-                  <v-card-title primary-title class="white--text">
-                    <div class="headline offset-md-9">Contact</div>
-                  </v-card-title>
-                  <v-card-text class="offset-md-8 white--text">
-                    6231305025@lamduan.mfu.ac.th
-                    6231305032@lamduan.mfu.ac.th
-                    6231305034@lamduan.mfu.ac.th
-                  </v-card-text>
-                </v-card>
-              </v-flex>
-            </v-layout>
-          </v-container>
+          </v-footer>
         </v-parallax>
       </section>
 
 
-=======
-        <v-parallax height="600">
-        <v-layout
-          column
-          wrap
-          class="my-5"
-          align-center
-          height="430"
-        >
 
-          <v-flex xs12>
-            <v-container grid-list-xl>
-              <v-layout row wrap align-center>
-                <v-flex xs12 md4>
-                  <v-card class="elevation-0 transparent">
-                    <v-card-text  class="text-xs-center">
-                      <!-- <v-icon x-large class="blue--text text--lighten-2 ">mdi-earth</v-icon> -->
-                    </v-card-text>
-                    <v-row justify="center">
-                        <v-avatar size="150px" >
-      <img
-        src="https://sv1.picz.in.th/images/2022/11/27/GReWi8.png"
-        alt="S"
-      >
-    </v-avatar>
-                    </v-row>
-                    <v-card-title primary-title class="layout justify-center">
-                      
-                      <div class="headline"><br/>Jittakorn Pankam</div>
-                    </v-card-title>
-                    <v-card-text>
-                      Studying in Mae Fah Luang University. Faculty of Information and Technology. Major Software Engineering.
-                    </v-card-text>
-                  </v-card>
-                </v-flex>
-                <v-flex xs12 md4>
-                  <v-card class="elevation-0 transparent">
-                    <v-card-text class="text-xs-center">
-                      <!-- <v-icon x-large class="blue--text text--lighten-2">flash_on</v-icon> -->
-                    </v-card-text>
-                                        <v-row justify="center">
-                        <v-avatar size="150px" >
-      <img
-        src="https://sv1.picz.in.th/images/2022/11/27/GRygSW.jpg"
-        alt="Golf"
-      >
-    </v-avatar>
-                    </v-row>
-                    <v-card-title primary-title class="layout justify-center">
-                      <div class="headline"><br/>Keerati Nitmanee</div>
-                    </v-card-title>
-                    <v-card-text>
-                      Studying in Mae Fah Luang University. Faculty of Information and Technology. Major Software Engineering. 
-                    </v-card-text>
-                  </v-card>
-                </v-flex>
-                <v-flex xs12 md4>
-                  <v-card class="elevation-0 transparent">
-                    <v-card-text class="text-xs-center">
-                      <!-- <v-icon x-large class="blue--text text--lighten-2">share</v-icon> -->
-                    </v-card-text>
-                                        <v-row justify="center">
-                        <v-avatar size="150px" >
-      <img
-        src="https://sv1.picz.in.th/images/2022/11/27/GRexzW.png"
-        alt="Q"
-      >
-    </v-avatar>
-                    </v-row>
-                    <v-card-title primary-title class="layout justify-center">
-                      <div class="headline text-xs-center"><br/>Tiradet Janta</div>
-                    </v-card-title>
-                    <v-card-text>
-                      Studying in Mae Fah Luang University. Faculty of Information and Technology. Major Software Engineering. 
-                    </v-card-text>
-                  </v-card>
-                  
-                </v-flex>
-                
-              </v-layout>
-            </v-container>
-          </v-flex>
-        </v-layout>
-      <v-footer dark padless>
-    <v-col
-      class="text-center"
-      cols="12"
-    >
-      <strong><h2>Contact</h2></strong>
-      6231305025@lamduan.mfu.ac.th
-<br/>6231305032@lamduan.mfu.ac.th
-<br/>6231305034@lamduan.mfu.ac.th
-                <br/>
-                <br/><v-btn
 
-          :key="icon"
 
-          icon
-        >
-<v-icon x-large class="orange--text text--lighten-2 mx-5 white--text">mdi-facebook</v-icon>
-<v-icon x-large class="orange--text text--lighten-2 mx-5 white--text">mdi-twitter</v-icon>
-<v-icon x-large class="orange--text text--lighten-2 mx-5 white--text">mdi-instagram</v-icon>
-        </v-btn>
-    </v-col>
-
-  </v-footer>
-        </v-parallax>
-      </section>
-
-      <section>
-          <!-- <v-footer
-    dark
-    padless
-  >
-    <v-card
-      flat
-      tile
-      class="indigo lighten-1 white--text text-center"
-    >
-      <v-card-text>
-
-      </v-card-text>
-
-      <v-card-text class="white--text pt-0">
-<br/>6231305025
-<br/>6231305032
-<br/>6231305034
-      </v-card-text>
-
-      <v-divider></v-divider>
-
-      <v-card-text class="white--text">
-                <v-btn
-
-          :key="icon"
-
-          icon
-        >
-<v-icon x-large class="blue--text text--lighten-2 mx-5 white--text">mdi-facebook</v-icon>
-<v-icon x-large class="blue--text text--lighten-2 mx-5 white--text">mdi-twitter</v-icon>
-<v-icon x-large class="blue--text text--lighten-2 mx-5 white--text">mdi-instagram</v-icon>
-        </v-btn>
-      </v-card-text>
-    </v-card>
-  </v-footer> -->
-            <!-- <v-parallax :src="imageLink.logo" height="130">
-              
-        <v-container grid-list-xl>
-          <v-layout row wrap justify-center class="my-5">
-
-            <v-flex xs12 sm4 offset-sm1>
-              <v-card class="elevation-0 transparent">
-                <v-card-title primary-title class="white--text">
-                  <div class="headline offset-md-9" >Contact</div>
-                </v-card-title>
-                <v-card-text class="offset-md-8 white--text">
-                  6231305025@lamduan.mfu.ac.th
-                  6231305032@lamduan.mfu.ac.th
-                  6231305034@lamduan.mfu.ac.th
-                </v-card-text>
-              </v-card>
-            </v-flex>
-          </v-layout>
-        </v-container>
-                </v-parallax> -->
-      </section>
->>>>>>> 42b566608bcf36c8c46d0be9c06e808ff39b119e
 
 
 
@@ -535,30 +370,38 @@ export default {
   font-size: 21px;
   color: white;
 }
-.icon{
-  color: #F49D1A ;
+
+.icon {
+  color: #F49D1A;
 }
-.bg{
-  background: linear-gradient(#FFE15D, #DC3535) 
+
+.bg {
+  background: linear-gradient(#FFE15D, #DC3535)
 }
+
 .btn {
 
   margin: 10px;
-  
+
   text-align: center;
   text-transform: uppercase;
   transition: 0.5s;
   background-size: 200% auto;
   color: white;
- /* text-shadow: 0px 0px 10px rgba(0,0,0,0.2);*/
+  /* text-shadow: 0px 0px 10px rgba(0,0,0,0.2);*/
   box-shadow: 0 0 20px #eee;
   border-radius: 10px;
- }
- .btn:hover {
-  background-position: right center; /* change the direction of the change here */
+}
+
+.btn:hover {
+  background-position: right center;
+  /* change the direction of the change here */
 }
 
 .btn-1 {
-  background-image: linear-gradient(to right, #FFE15D 0%,#DC3535 51%,#FFE15D 100%);
+  background-image: linear-gradient(to right, #FFE15D 0%, #DC3535 51%, #FFE15D 100%);
+}
+.footer{
+  background-color: #B01E68 !important
 }
 </style>
