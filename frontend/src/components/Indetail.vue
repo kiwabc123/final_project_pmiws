@@ -102,7 +102,7 @@
             Price:
           </td>
           <td>
-            {{ CurrencyExchange }} $,{{ product.price.yuan }} ¥ / unit
+            {{ CurrencyExchange }} $  ,  {{ product.price.yuan }} ¥ / unit
           </td>
         </tr>
 
