@@ -29,12 +29,10 @@
                 <v-flex xs12 md4>
                   <v-card class="elevation-0 transparent">
                     <v-card-text class=" layout justify-center">
-                      <!-- <v-icon x-large class="blue--text text--lighten-2 ">mdi-earth</v-icon> -->
+                     
                     </v-card-text>
                     <v-row justify="center">
-                      <!-- <v-avatar size="130px">
-                        <img src="https://cdn-icons-png.flaticon.com/512/3203/3203214.png" alt="fast">
-                      </v-avatar> -->
+                      
                       <v-icon x-large class="icon text--lighten-2 ">mdi-run-fast</v-icon>
                     </v-row>
                     <v-card-title primary-title class="layout justify-center">
@@ -48,12 +46,10 @@
                 <v-flex xs12 md4>
                   <v-card class="elevation-0 transparent">
                     <v-card-text class=" layout justify-center">
-                      <!-- <v-icon x-large class="blue--text text--lighten-2 ">mdi-earth</v-icon> -->
+                    
                     </v-card-text>
                     <v-row justify="center">
-                      <!-- <v-avatar size="130px">
-                        <img src="https://cdn-icons-png.flaticon.com/512/4147/4147064.png" alt="simple">
-                      </v-avatar> -->
+                      
                       <v-icon x-large class="icon text--lighten-2 ">mdi-thumb-up</v-icon>
                     </v-row>
                     <v-card-title primary-title class="layout justify-center">
@@ -67,13 +63,10 @@
                 <v-flex xs12 md4>
                   <v-card class="elevation-0 transparent">
                     <v-card-text class=" layout justify-center">
-                      <!-- <v-icon x-large class="blue--text text--lighten-2 ">mdi-earth</v-icon> -->
+                     
                     </v-card-text>
                     <v-row justify="center">
-                      <!-- <v-avatar size="130px">
-                        <img src="https://cdn-icons-png.flaticon.com/512/484/484169.png" alt="one">
-
-                      </v-avatar> -->
+                     
 
                       <v-icon x-large class="icon text--lighten-2 ">mdi-map-marker</v-icon>
                     </v-row>
@@ -184,8 +177,7 @@
         </v-parallax>
       </section>
 
-
-
+    
       <section>
         <v-parallax height="600">
           <v-layout column wrap class="my-5" align-center height="430">
@@ -257,7 +249,7 @@
               </v-container>
             </v-flex>
           </v-layout>
-          <v-footer dark padless class="footer">
+          <v-footer dark padless>
             <v-col class="text-center" cols="12">
               <strong>
                 <h2>Contact</h2>
@@ -267,7 +259,7 @@
               <br />6231305034@lamduan.mfu.ac.th
               <br />
               <br />
-              <v-btn :key="icon" icon>
+              <v-btn class="icon">
                 <v-icon x-large class="orange--text text--lighten-2 mx-5 white--text">mdi-facebook</v-icon>
                 <v-icon x-large class="orange--text text--lighten-2 mx-5 white--text">mdi-twitter</v-icon>
                 <v-icon x-large class="orange--text text--lighten-2 mx-5 white--text">mdi-instagram</v-icon>
@@ -277,12 +269,6 @@
           </v-footer>
         </v-parallax>
       </section>
-
-
-
-
-
-
 
 
     </v-main>
@@ -302,7 +288,6 @@ export default {
       ],
     }),
   components: {
-
     Appbar
   },
   
@@ -345,17 +330,11 @@ export default {
       this.subscribed = !this.subscribed;
     }
   },
-
   computed: {
-    imgHeight: function() {
-      var offset = 320;
-      console.log("new image height is " + (this.pageHeight - offset));
-      return this.pageHeight - offset;
-    }
-  },
 
+  },
   mounted: function() {
-    this.calculateHeight();
+
   }
 };
 </script>
@@ -380,7 +359,6 @@ export default {
 }
 
 .btn {
-
   margin: 10px;
 
   text-align: center;
@@ -400,8 +378,5 @@ export default {
 
 .btn-1 {
   background-image: linear-gradient(to right, #FFE15D 0%, #DC3535 51%, #FFE15D 100%);
-}
-.footer{
-  background-color: #B01E68 !important
 }
 </style>
