@@ -1,10 +1,11 @@
-from PIL import Image
+from PIL import ImageFile,Image
 from pathlib import Path
 import os
 import numpy as np
 from tensorflow.keras.preprocessing import image
 from tensorflow.keras.applications.vgg16 import VGG16, preprocess_input
 from tensorflow.keras.models import Model
+ImageFile.LOAD_TRUNCATED_IMAGES = True
 
 
 class FeatureExtractor:

@@ -70,7 +70,9 @@ router.post(
 );
 router.get("/getrandomcate",[],async (req,res)=>{
   try {
-    const items = await service.ramdomcategoly();
+    console.log(req.query.category)
+    const items = await service.ramdomcategoly(req.query.category);
+    
     console.log(items.length)
 
     res.json(items);

@@ -10,10 +10,10 @@ import aiohttp
 import json
 from tabulate import tabulate
 df = pd.read_excel(
-    "../../datacollect/Yiwugo_top_sales_1 (clean).xlsx", sheet_name=0)
+    "../../datacollect/Yiwugo_top_sales_2 (clean).xlsx", sheet_name=0)
 list1 = list(df['image'])
 list2 = list(df['Product'])
-list3 = list(df['Contect(clean)'])
+list3 = list(df['Contact(clean)'])
 # list4 = list(df['Supplier'])
 list5 = list(df['Price(clean)'])
 # list6 = list(df['Price'])
@@ -66,6 +66,7 @@ async def main():
     
     async with aiohttp.ClientSession() as session:
         setImages = []
+        count=0
         for index in range(len(list1)):
             # print(type(list3[index]))
             setImages.append(list1[index])
@@ -82,18 +83,18 @@ async def main():
                 # print(list1[index])
                 Product = {
                     "detail": Detail,
-                    "category": "buddha",
+                    "category": "resin crafts",
                     "image": Images,
                     "supplier": {"name": Name, "contact": Contact},
                     "price": Price,
                 }
-
+                # count+=1
                 # print(json.dumps(Product, indent = 4),len(Product))
-
+                # print(count)
                 async with session.post('http://localhost:8090/api/product/addproduct', data=json.dumps(Product, indent = 4) , headers={'Content-type': 'application/json', 'Accept': 'text/plain'}) as resp:
                     print(resp.status)
                     print(await resp.text())
-                time.sleep(1)
+                # time.sleep(1)
           
 
 

@@ -78,12 +78,12 @@ module.exports = {
 
         })
     },
-    ramdomcategoly() {
+    ramdomcategoly(value) {
         return new Promise((resolve, reject) => {
             modelProduct.aggregate(
                 [{
                     '$match': {
-                        'category': 'buddha'
+                        'category': value
                     }
                 }, {
                     '$sample': {

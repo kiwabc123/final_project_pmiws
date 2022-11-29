@@ -343,7 +343,7 @@ export default {
                 obj[key] = contacts[key]
                 // console.log(obj)
                 this.contacts[key] = contacts[key]
-
+                this.getrandom()
               });
               // console.log(this.contacts)
 
@@ -364,6 +364,14 @@ export default {
       //     console.log("sup",res)
       //   })
       // })
+    },
+    gotodetail(id) {
+      console.log("ddd");
+      let routeData = this.$router.resolve({
+        path: "/detail",
+        query: { productid: id },
+      });
+      window.open(routeData.href, "_self");
     },
     async getsuppiler(product) {
       console.log("product", product)
@@ -405,8 +413,8 @@ export default {
           })
           .catch((error) => console.error("FETCH ERROR:", error));
       }
-    }
-    , selectimage() {
+    }, 
+    selectimage() {
 
       var url = 'http://localhost:8090/api/image/dataset/'
       var extension = '.jpeg'
@@ -421,9 +429,10 @@ export default {
 
 
     },
-    getrandom() {
-      axios
-        .get("http://localhost:8090/api/product/getrandomcate")
+    async getrandom() {
+      // console.log(this.product)
+      await axios
+        .get("http://localhost:8090/api/product/getrandomcate/?category="+this.product.category)
         .then((response) => {
           const data = response.data;
           console.table(data)
@@ -439,11 +448,12 @@ export default {
 
   },
   created() {
+    
     this.getproduct(this.$route.query.productid);
     // console.log(this.$route.query.productid);
     // this.getsuppiler(this.product)
     this.fetchCurrencies();
-    this.getrandom()
+    
 
   },
   computed: {
