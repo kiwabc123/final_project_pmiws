@@ -68,6 +68,16 @@ router.post(
     }
   }
 );
+router.get("/getrandomcate",[],async (req,res)=>{
+  try {
+    const items = await service.ramdomcategoly();
+    console.log(items.length)
+
+    res.json(items);
+  } catch (err) {
+    res.error(err);
+  }
+})
 router.get("/getrandom",[],async (req,res)=>{
   try {
     const items = await service.random();

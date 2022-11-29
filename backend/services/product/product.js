@@ -78,6 +78,26 @@ module.exports = {
 
         })
     },
+    ramdomcategoly() {
+        return new Promise((resolve, reject) => {
+            modelProduct.aggregate(
+                [{
+                    '$match': {
+                        'category': 'buddha'
+                    }
+                }, {
+                    '$sample': {
+                        'size': 3
+                    }
+                }]
+            ).then(result => {
+                resolve(result)
+            }).catch(err => reject(err))
+
+
+        })
+
+    },
     search(value) {
         return new Promise((resolve, reject) => {
 

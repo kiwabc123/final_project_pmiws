@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="mt-10 ml-10" justify="center" align="center">
+    <div class="mt-10 ml-10 mb-10" justify="center" align="center">
       <v-row>
         <v-col cols="4" sm="4">
           <img :src="selectimage()" width="400px" />
@@ -55,7 +55,7 @@
               </v-col>
             </v-row>
             <v-row class="ma-8">
-              <v-btn color="primary" outlined large @click="calculated(),checkcal=true">
+              <v-btn color="#F49D1A" outlined large @click="calculated(), checkcal = true">
                 calculate
                 <v-icon dark class="ma-2">
                   {{ mdiChartLine }}
@@ -65,24 +65,24 @@
             <div v-if="checkcal">
               <chart :series="series" :chartOptions="chartOptions"></chart>
             </div>
-              
-            
+
+
 
           </v-card>
         </v-col>
       </v-row>
     </div>
+    <v-divider></v-divider>
+    <div class="mt-16 orangetext2" justify="center" align="center">
 
-    <div class="mt-16 " justify="center" align="center">
-
-      <h2 class="red--text text--lighten-1">{{ product.detail }}</h2>
+      <h2 class="text--lighten-1">{{ product.detail }}</h2>
       <table style="width:70%" class="pa-10">
         <tr>
 
 
         </tr>
         <tr>
-          <td>
+          <td class="font-weight-black orangetext">
             Supplier:
           </td>
           <td>
@@ -90,7 +90,7 @@
           </td>
         </tr>
         <tr>
-          <td>
+          <td class="font-weight-black orangetext">
             Category:
           </td>
           <td>
@@ -98,7 +98,7 @@
           </td>
         </tr>
         <tr>
-          <td>
+          <td class="font-weight-black orangetext">
             Price:
           </td>
           <td>
@@ -109,11 +109,40 @@
 
         <tr v-for="(value, key, index)  in contacts" :key="index">
 
-          <td>{{ key }} :</td>
+          <td class="font-weight-black orangetext">{{ key }} :</td>
           <td>{{ value }}</td>
 
         </tr>
       </table>
+    </div>
+
+    <div>
+      <v-divider></v-divider>
+      <h1 class="ma-10 orangetext2"> similar products</h1>
+      <v-container class="grey lighten-3">
+        <v-flex d-flex>
+          <v-layout wrap>
+
+            <v-flex md4 v-for="(item, idx) in products" :key="idx">
+              <v-card flat style="overflow-y: auto; height:630px" class="ma-3 text-xs-center"
+                @click="gotodetail(item._id)">
+                <v-img :src="`http://localhost:8090/api/image/dataset/${item.images[0]}.jpeg`" aspect- ratio="2.75">
+                </v-img>
+                <v-card-title primary-title class="justify-center">
+                  <div>
+                    <h3 class="headline black--text text--accent-2">
+                      {{ item.detail }}
+                    </h3>
+                    <div style="height:10%; position:absolute; bottom:0px;" class="red--text">
+                      {{ item.price['yuan'] }} <strong>¥</strong>
+                    </div>
+                  </div>
+                </v-card-title>
+              </v-card>
+            </v-flex>
+          </v-layout>
+        </v-flex>
+      </v-container>
     </div>
 
   </div>
@@ -135,6 +164,7 @@ export default {
   },
   data() {
     return {
+      products: [],
       checkcal: false,
       series: [],
       mdiTruckCargoContainer: mdiTruckCargoContainer,
@@ -170,7 +200,7 @@ export default {
       var EndPointY = (m * (startX - EndX) - startY) * -1
       return EndPointY
     },
-    Currency(price){
+    Currency(price) {
       console.log(Number((price) * JSON.parse(localStorage.getItem("Currency")).USD).toFixed(2))
       return Number((price) * JSON.parse(localStorage.getItem("Currency")).USD).toFixed(2)
     },
@@ -317,7 +347,7 @@ export default {
               });
               // console.log(this.contacts)
 
-         
+
 
 
             })
@@ -391,6 +421,21 @@ export default {
 
 
     },
+    getrandom() {
+      axios
+        .get("http://localhost:8090/api/product/getrandomcate")
+        .then((response) => {
+          const data = response.data;
+          console.table(data)
+          this.products = data
+        })
+        .catch(function (error) {
+          console.log(error);
+          this.loading = false;
+
+        });
+
+    }
 
   },
   created() {
@@ -398,6 +443,7 @@ export default {
     // console.log(this.$route.query.productid);
     // this.getsuppiler(this.product)
     this.fetchCurrencies();
+    this.getrandom()
 
   },
   computed: {
@@ -411,7 +457,7 @@ export default {
         console.log("price", Number(parseInt(this.product.price.yuan) * JSON.parse(localStorage.getItem("Currency")).USD).toFixed(2))
 
         return Number(parseFloat(this.product.price.yuan) * JSON.parse(localStorage.getItem("Currency")).USD).toFixed(2)
-      
+
       }
       return 0;
     }
@@ -426,6 +472,23 @@ th {
   text-align: left;
   padding: 8px;
 }
+
+.orangetext {
+  color: #F49D1A;
+}
+
+.orangetext2 {
+  color: #DC3535;
+}
+img {
+   
+      border:2px solid #fff;
+      
+      box-shadow: 10px 10px 5px #ccc;
+      -moz-box-shadow: 10px 10px 5px #ccc;
+      -webkit-box-shadow: 10px 10px 5px #ccc;
+      -khtml-box-shadow: 10px 10px 5px #ccc;
+    }
 </style>
 
 
