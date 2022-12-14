@@ -27,13 +27,15 @@ Brands that are available on the market, – for example electrical appliances, 
 
 ## Requirement
   <a>
-    <img src="https://skillicons.dev/icons?i=git,kubernetes,docker,c,vim" />
+    <img src="https://skillicons.dev/icons?i=python" />
+ python 3.10 below
   </a>
 
+  <a>
+    <img src="https://skillicons.dev/icons?i=nodejs" />
+ node.js 
+  </a>
 
-👩‍💻 python 3.10 below
-
-🧠 node.js 
 
 
 
