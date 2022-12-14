@@ -10,7 +10,7 @@ import numpy as np
 from PIL import Image
 from FeatureExtractor import FeatureExtractor
 import sys
-
+import json
 fe = FeatureExtractor()
 
 
@@ -63,7 +63,9 @@ for id in ids:
     if id < len(img_paths):
         scores.append((dists[id], img_paths[id]))
         getimg_id.append(img_id[id])
-print(getimg_id)
+        # print(getimg_id)
+res = json.dumps(getimg_id)
+print(res)
 #scores = [(dists[id], img_paths[id]) for id in ids]
 
 # Visualize the result
@@ -77,7 +79,7 @@ for a in range(5*6):
     plt.axis('off')
     plt.imshow(Image.open(score[1]))
 fig.tight_layout()
-plt.show()
+# plt.show()
 
-# if(getimg_id):
-#     sys.stdout.flush()
+if(getimg_id):
+    sys.stdout.flush()

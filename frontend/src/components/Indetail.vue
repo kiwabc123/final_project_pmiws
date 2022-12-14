@@ -55,7 +55,7 @@
               </v-col>
             </v-row>
             <v-row class="ma-8">
-              <v-btn color="#F49D1A" outlined large @click="calculated(), checkcal = true">
+              <v-btn color="#F49D1A" outlined large @click="calculated">
                 calculate
                 <v-icon dark class="ma-2">
                   {{ mdiChartLine }}
@@ -119,30 +119,32 @@
     <div>
       <v-divider></v-divider>
       <h1 class="ma-10 orangetext2"> similar products</h1>
-      <v-container class="grey lighten-3">
-        <v-flex d-flex>
-          <v-layout wrap>
+      <div class="ma-10">
+        <v-container class="gradient lighten-3">
+          <v-flex d-flex>
+            <v-layout wrap>
 
-            <v-flex md4 v-for="(item, idx) in products" :key="idx">
-              <v-card flat style="overflow-y: auto; height:630px" class="ma-3 text-xs-center"
-                @click="gotodetail(item._id)">
-                <v-img :src="`http://localhost:8090/api/image/dataset/${item.images[0]}.jpeg`" aspect- ratio="2.75">
-                </v-img>
-                <v-card-title primary-title class="justify-center">
-                  <div>
-                    <h3 class="headline black--text text--accent-2">
-                      {{ item.detail }}
-                    </h3>
-                    <div style="height:10%; position:absolute; bottom:0px;" class="red--text">
-                      {{ item.price['yuan'] }} <strong>¥</strong>
+              <v-flex md4 v-for="(item, idx) in products" :key="idx">
+                <v-card flat style="overflow-y: auto; height:630px" class="ma-3 text-xs-center rounded-xl"
+                  @click="gotodetail(item._id)">
+                  <v-img :src="`http://localhost:8090/api/image/dataset/${item.images[0]}.jpeg`" aspect- ratio="2.75">
+                  </v-img>
+                  <v-card-title primary-title class="justify-center">
+                    <div>
+                      <h3 class="headline black--text text--accent-2">
+                        {{ item.detail }}
+                      </h3>
+                      <div style="height:10%; position:absolute; bottom:0px;" class="red--text">
+                        {{ item.price['yuan'] }} <strong>¥</strong>
+                      </div>
                     </div>
-                  </div>
-                </v-card-title>
-              </v-card>
-            </v-flex>
-          </v-layout>
-        </v-flex>
-      </v-container>
+                  </v-card-title>
+                </v-card>
+              </v-flex>
+            </v-layout>
+          </v-flex>
+        </v-container>
+      </div>
     </div>
 
   </div>
@@ -206,6 +208,9 @@ export default {
       return Number((price) * JSON.parse(localStorage.getItem("Currency")).USD).toFixed(2)
     },
     calculated() {
+      if(this.cost>=0&&this.profit>=0){
+        this.checkcal = true
+    
       var price = parseFloat(this.Currency(parseFloat(this.product.price.yuan)));
       console.log(typeof price)
       // console.log("price:", this.price, typeof this.price , parseInt(this.CurrencyExchange))
@@ -353,6 +358,7 @@ export default {
         },
 
       }
+    }
 
 
 
@@ -564,7 +570,10 @@ img {
   border-radius: 30px;
 }
 
-
+.gradient {
+  background: rgb(179, 51, 79);
+  background: linear-gradient(90deg, rgba(179, 51, 79, 1) 0%, rgba(210, 51, 59, 0.9245448179271709) 26%, rgba(253, 51, 29, 0.6920518207282913) 62%, rgba(252, 176, 69, 1) 100%);
+}
 </style>
 
 

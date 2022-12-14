@@ -50,14 +50,14 @@
 
 
 
-    <div>
+    <div class="ma-10">
 
 
       <v-container class="gradient lighten-3">
         <v-flex d-flex>
           <v-layout wrap>
-
-            <v-flex md4 v-for="(item, idx) in products.slice().reverse()" :key="idx">
+            <!-- .slice().reverse() -->
+            <v-flex md4 v-for="(item, idx) in products" :key="idx">
               <v-card flat style="overflow-y: auto; height:630px" class="ma-3 text-xs-center rounded-xl"
                 @click="gotodetail(item._id)">
                 <v-img :src="`http://localhost:8090/api/image/dataset/${item.images[0]}.jpeg`" aspect- ratio="2.75">
