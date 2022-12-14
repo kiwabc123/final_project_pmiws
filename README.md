@@ -11,11 +11,17 @@ Brands that are available on the market, – for example electrical appliances, 
 
 ## Group members
 
-| ID           | Name                                                              |
-| ----------------- | ------------------------------------------------------------------ |
-| 6231305025 |Jittakorn Pankam|
-| 6231305032 | Keerati Nitmanee |
-| 6231305034 |Tiradet Janta  |
+| ID           | Name                                                              | Facebook          | 
+| ----------------- | ------------------------------------------------------------------ | ----------------- |
+| 6231305025 |Jittakorn Pankam|[![Ace](https://img.shields.io/badge/my_portfolio-000?style=for-the-badge&logo=ko-fi&logoColor=white)](https://katherineoelsner.com/)|
+| 6231305032 |Keerati Nitmanee |
+| 6231305034 |Tiradet Janta  |[![Kiw]((https://www.facebook.com/kqa2z/)|
+
+## 🔗 contact
+[![Ace](https://img.shields.io/badge/my_portfolio-000?style=for-the-badge&logo=ko-fi&logoColor=white)](https://katherineoelsner.com/)
+[![Golf](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/)
+[![Kiw]((https://www.facebook.com/kqa2z/)
+
 
 
 
