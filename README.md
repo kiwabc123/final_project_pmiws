@@ -26,8 +26,10 @@ Brands that are available on the market, – for example electrical appliances, 
 
 
 ## Requirement
- 
-    <img src="https://skillicons.dev/icons?i=python" />
+  <a>
+    <img src="https://skillicons.dev/icons?i=git,kubernetes,docker,c,vim" />
+  </a>
+
 
 👩‍💻 python 3.10 below
 
