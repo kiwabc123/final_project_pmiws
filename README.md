@@ -26,15 +26,10 @@ Brands that are available on the market, – for example electrical appliances, 
 
 
 ## Requirement
-  <a>
-    <img src="https://skillicons.dev/icons?i=python" />
- python 3.10 below
-  </a>
+<h3><img align="center" height="30"  src="https://skillicons.dev/icons?i=python" > python 3.10 below</h3>
+<h3><img align="center" height="30"  src="https://skillicons.dev/icons?i=nodejs"  >  node.js </h3>
 
-  <a>
-    <img src="https://skillicons.dev/icons?i=nodejs" />
- node.js 
-  </a>
+
 
 
 
